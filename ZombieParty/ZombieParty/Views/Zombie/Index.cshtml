@@ -1,4 +1,6 @@
-﻿<div class="container p-3">
+﻿@model IEnumerable<ZombieParty.Models.Zombie>
+
+<div class="container p-3">
     <div class="row pt-4">
         <div class="col-10">
             <h2 class="text-primary">Zombie</h2>
@@ -11,7 +13,7 @@
     </div>
 
     <div class="row">
-        @foreach (var item in this.ViewBag.MaListe)
+        @foreach (var item in Model)
         {
             <div href="#" class="card  border m-3 text-center bg-warning" style="width: 20rem; background-image: url('/images/imagesLayout/Fond.png'); ">
                 <div class="card-body  text-warning">

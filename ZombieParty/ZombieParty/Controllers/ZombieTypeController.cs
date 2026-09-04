@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ZombieParty.Models;
+using ZombieParty.Models.Data;
 using ZombieParty.ViewModels;
 
 namespace ZombieParty.Controllers
 {
     public class ZombieTypeController : Controller
     {
-        private BaseDonnees _baseDonnees { get; set; }
+        private ZombiePartyDbContext _baseDonnees { get; set; }
 
-        public ZombieTypeController(BaseDonnees baseDonnees)
+        public ZombieTypeController(ZombiePartyDbContext baseDonnees)
         {
             _baseDonnees = baseDonnees;
         }
@@ -51,6 +52,9 @@ namespace ZombieParty.Controllers
             {
                 // Ajouter à la BD
                 _baseDonnees.ZombieTypes.Add(zombieType);
+
+                _baseDonnees.SaveChanges();
+
                 TempData["Success"] = $"{zombieType.TypeName} zombie type added";
                 return this.RedirectToAction("Index");
             }
